@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:instagram/src/components/image_data.dart';
 import 'package:instagram/src/controller/bottom_nav_controller.dart';
 import 'package:instagram/src/pages/home.dart';
+import 'package:instagram/src/pages/search.dart';
 
 class App extends GetView<BottomNavController> {
   const App({super.key});
@@ -17,21 +18,16 @@ class App extends GetView<BottomNavController> {
             index: controller.pageIndex.value,
             children: [
               const Home(),
-              Container(
-                child: const Center(child: Text('HOME')),
+              Navigator(
+                key: controller.searchPageNavigationKey,
+                onGenerateRoute: (routeSetting) {
+                  return MaterialPageRoute(
+                      builder: (context) => const Search());
+                },
               ),
-              Container(
-                child: const Center(child: Text('SEARCH')),
-              ),
-              Container(
-                child: const Center(child: Text('UPLOAD')),
-              ),
-              Container(
-                child: const Center(child: Text('ACTIVITY')),
-              ),
-              Container(
-                child: const Center(child: Text('MYPAGE')),
-              ),
+              const Center(child: Text('UPLOAD')),
+              const Center(child: Text('ACTIVITY')),
+              const Center(child: Text('MYPAGE')),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
